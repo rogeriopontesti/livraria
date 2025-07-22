@@ -43,6 +43,10 @@ Esta aula tem como propósito desenvolver uma API RESTful com **Spring Boot** ut
 
 A **API Livraria** é um sistema desenvolvido com **Spring Boot** e **Spring Data JPA** com o objetivo de simular o backend de uma livraria digital. A aplicação permite o gerenciamento das seguintes entidades: **Livro**, **Autor**, **Editora** e **Resenha**, respeitando os relacionamentos e regras de negócio definidos em um modelo orientado a objetos.
 
+- [Spring Initializr](https://start.spring.io/)
+
+[![Spring Initializr](https://i.postimg.cc/mZVLcmT7/livraria-start-spring-io.png)](https://i.postimg.cc/mZVLcmT7/livraria-start-spring-io.png)
+
 #### 🔁 Relacionamentos entre Entidades
 
 - Um **Livro** pode ter **vários Autores** e um **Autor** pode ter **vários Livros** → _Relacionamento Many-to-Many_.
@@ -51,11 +55,18 @@ A **API Livraria** é um sistema desenvolvido com **Spring Boot** e **Spring Dat
 
 ### 📌 Diagrama de Classes
 
-![Diagrama de Classes da API Livraria](./caminho/para/diagrama%20de%20classes%20livraria.png)
-
+[![Diagrama de Classes da API Livraria](https://i.postimg.cc/mkgm6LzZ/diagrama-de-classes-livraria.png)](https://i.postimg.cc/mkgm6LzZ/diagrama-de-classes-livraria.png)
 
 ### 🔄 Exemplo de Relacionamento One-to-Many / Many-to-One
 
-![Exemplo de One-to-Many Editora ↔ Livros](./caminho/para/um%20para%20muitos%20e%20muitos%20para%20um.png)
+[![Exemplo de One-to-Many Editora ↔ Livros](https://i.postimg.cc/cLyQv1xK/um-para-muitos-e-muitos-para-um.png)](https://i.postimg.cc/cLyQv1xK/um-para-muitos-e-muitos-para-um.png)
+
+### 🔄 Exemplo de Relacionamento Many-to-Many
+
+[![Exemplo de Many-to-Many Editora ↔ Livros](https://i.postimg.cc/mk77wKVZ/muitos-para-muitos.png)](https://i.postimg.cc/mk77wKVZ/muitos-para-muitos.png)
+
+### 🔄 Exemplo de Relacionamento One-to-One
+
+[![Exemplo de One-to-One Editora ↔ Livros](https://i.postimg.cc/kX9SC1f8/um-para-um.png)](https://i.postimg.cc/kX9SC1f8/um-para-um.png)
 
 A API é ideal para fins educacionais, pois permite aplicar conceitos práticos de modelagem de dados, relacionamento entre entidades com **JPA**, e criação de endpoints RESTful com **Spring MVC**, além do uso de banco em memória (**H2**) para facilitar testes e desenvolvimento local.
