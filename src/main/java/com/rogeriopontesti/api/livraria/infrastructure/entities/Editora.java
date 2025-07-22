@@ -21,6 +21,8 @@ public class Editora {
 
     @Column(nullable = false)
     private String nome;
+
+    @OneToMany(mappedBy = "editora", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Livro> livros;
 
 }

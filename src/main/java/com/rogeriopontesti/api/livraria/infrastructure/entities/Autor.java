@@ -1,5 +1,7 @@
 package com.rogeriopontesti.api.livraria.infrastructure.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +23,9 @@ public class Autor {
 
     @Column(nullable = false)
     private String nome;
+
+    @ManyToMany(mappedBy = "autores")
+    @JsonBackReference
     private List<Livro> livros;
 
 }
