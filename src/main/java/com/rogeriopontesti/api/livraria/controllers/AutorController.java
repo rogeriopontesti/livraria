@@ -58,7 +58,7 @@ public class AutorController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> atualizarAutor(@PathVariable UUID id, @RequestBody Autor autor) {
-        service.deleteAutor(autor);
+        service.atualizaAutorPorId(id, autor);
         return ResponseEntity.noContent().build();
     }
 

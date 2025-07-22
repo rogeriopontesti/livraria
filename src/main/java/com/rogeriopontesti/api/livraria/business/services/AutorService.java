@@ -4,6 +4,7 @@ import com.rogeriopontesti.api.livraria.business.exceptions.AutorNotFoundExcepti
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.AutorRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class AutorService {
 
     private final AutorRepository repository;
@@ -45,16 +47,7 @@ public class AutorService {
             throw new AutorNotFoundException("ID do autor não informado.");
         }
 
-        Autor autorAtual = repository.findById(autor.getId())
-                .orElseThrow(() -> new AutorNotFoundException(autor.getId()));
-
-        if (autorAtual.getLivros() != null) {
-            autorAtual.getLivros().forEach(livro -> livro.getAutores().remove(autorAtual));
-            autorAtual.setLivros(null);
-        }
-
-        repository.save(autorAtual);
-        repository.delete(autorAtual);
+        deleteAutorPorId(autor.getId());
     }
 
     public void deleteAutorPorId(UUID id){

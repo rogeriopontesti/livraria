@@ -154,3 +154,52 @@ INSERT INTO resenhas (id, resenha, livro_id)  VALUES ('1e234567-aaaa-bbbb-cccc-1
 	"nome": "Rogerio Pontes de Almeida"
 }
 ```
+
+### CRUD - Editoras
+
+##### GET: Lista editores
+
+- http://localhost:8080/editoras
+
+##### GET: Encontra editora pelo ID
+
+- http://localhost:8080/editoras/e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf
+
+##### GET: Encontrar autora pelo nome
+
+- http://localhost:8080/editoras/nome/Companhia
+
+##### POST: Salvar editora
+
+- http://localhost:8080/editoras
+
+```json
+{
+	"nome": "Editora Moderna"
+}
+```
+
+##### DELETE: Deletar editora pelo ID
+
+- http://localhost:8080/editoras/e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf
+
+##### DELETE: Deletar editora pela entidade
+
+- http://localhost:8080/editoras
+
+```json
+{
+    "id" : "e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf"
+}
+```
+
+##### PUT: Atualizar editora
+
+- http://localhost:8080/editoras/e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf
+
+```json
+{
+	"id" : "e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf",
+    	"nome" : "Editora Nova Abril Cultural"
+}
+```

@@ -1,5 +1,7 @@
 package com.rogeriopontesti.api.livraria.infrastructure.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,9 +33,11 @@ public class Livro {
     private List<Autor> autores;
 
     @ManyToOne
-    @JoinColumn(name = "editora_id", nullable = false)
+    @JoinColumn(name = "editora_id")
+    @JsonBackReference
     private Editora editora;
 
     @OneToOne(mappedBy = "livro", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private Resenha resenha;
 }

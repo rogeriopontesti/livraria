@@ -1,5 +1,6 @@
 package com.rogeriopontesti.api.livraria.infrastructure.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class Resenha {
     private String resenha;
 
     @OneToOne
-    @JoinColumn(name = "livro_id", nullable = false, unique = true)
+    @JoinColumn(name = "livro_id", nullable = false)
+    @JsonBackReference
     private Livro livro;
 }
