@@ -114,7 +114,7 @@ INSERT INTO resenha (id, nome, livro_id) VALUES ('123resen-aaa1-234b-ccdd-5678ee
 ### 🧪 Exemplos de Testes na API
 #### 🔍 Listar todos os livros
 
-- ![GET livros](http://localhost:8080/livros)
+- http://localhost:8080/livros
 
 #### Resposta esperada:
 
