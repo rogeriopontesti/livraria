@@ -74,6 +74,7 @@ A API é ideal para fins educacionais, pois permite aplicar conceitos práticos 
 ### ⚙️ Configurações do Banco de Dados (application.properties)
 
 ```properties
+
 # Dados de conexão com o banco H2
 spring.datasource.url=jdbc:h2:mem:livraria
 spring.datasource.username=sa
@@ -87,9 +88,12 @@ spring.h2.console.path=/h2-console
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 
+```
+
 ### 🗃️ Script SQL para Popular o Banco
 
 ```sql
+
 -- AUTORES
 INSERT INTO autor (id, nome) VALUES ('d1a3df01-bb2f-4d70-9d9b-a111fa663f02', 'Machado de Assis');
 INSERT INTO autor (id, nome) VALUES ('5b1d72a9-43a4-4e4c-9e17-3e9f17e489e9', 'Clarice Lispector');
@@ -110,7 +114,7 @@ INSERT INTO resenha (id, nome, livro_id) VALUES ('123resen-aaa1-234b-ccdd-5678ee
 ### 🧪 Exemplos de Testes na API
 #### 🔍 Listar todos os livros
 
-- ![GET /livros](GET http://localhost:8080/livros)
+- ![GET livros](http://localhost:8080/livros)
 
 #### Resposta esperada:
 
@@ -136,6 +140,5 @@ INSERT INTO resenha (id, nome, livro_id) VALUES ('123resen-aaa1-234b-ccdd-5678ee
     }
   }
 ]
-
 
 ```
