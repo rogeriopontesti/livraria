@@ -105,33 +105,52 @@ INSERT INTO resenhas (id, resenha, livro_id)  VALUES ('1e234567-aaaa-bbbb-cccc-1
 ```
 
 ### 🧪 Exemplos de Testes na API
-#### 🔍 Listar todos os livros
+#### 🔍 CRUD Autores
 
-- http://localhost:8080/livros
+##### GET: Lista autores
 
-#### Resposta esperada:
+- http://localhost:8080/autores
+
+##### GET: Encontra autor pelo ID
+
+- http://localhost:8080/autores/5b1d72a9-43a4-4e4c-9e17-3e9f17e489e9
+
+##### GET: Encontrar autor pelo nome
+
+- http://localhost:8080/autores/nome/machado
+
+###### POST: Salvar autor
+
+- http://localhost:8080/autores
 
 ```json
+{
+	"nome": "Rogerio Pontes"
+}
+```
 
-[
-  {
-    "id": "aaa111bb-222c-333d-444e-555fff666ggg",
-    "titulo": "Dom Casmurro",
-    "autores": [
-      {
-        "id": "d1a3df01-bb2f-4d70-9d9b-a111fa663f02",
-        "nome": "Machado de Assis"
-      }
-    ],
-    "editora": {
-      "id": "e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf",
-      "nome": "Companhia das Letras"
-    },
-    "resenha": {
-      "id": "123resen-aaa1-234b-ccdd-5678eeeeffff",
-      "nome": "Uma obra-prima da literatura brasileira."
-    }
-  }
-]
+###### DELETE: Deletar autor pelo ID
 
+- http://localhost:8080/autores/d1a3df01-bb2f-4d70-9d9b-a111fa663f02
+
+###### DELETE: Deletar autor pela entidade
+
+- http://localhost:8080/autores
+
+```json
+{
+	"id": "26c8ec90-808c-4570-a998-97afd9bb420e",
+	"nome": "Rogerio Pontes"
+}
+```
+
+###### PUT: Atualizar autor
+
+- http://localhost:8080/autores/5a3a7ce3-9798-4e8b-a8e0-375d1302dad4
+
+```json
+{
+	"id": "5a3a7ce3-9798-4e8b-a8e0-375d1302dad4",
+	"nome": "Rogerio Pontes de Almeida"
+}
 ```

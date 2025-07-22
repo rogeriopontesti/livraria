@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class AutorController {
     public ResponseEntity<List<Autor>> listarAutoresPorNome(@PathVariable String nome){
         List<Autor> autores = service.buscarAutoresPorNome(nome);
         if (autores.isEmpty()) {
-            return ResponseEntity.noContent().build();  // HTTP 204
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(autores);
     }
@@ -36,15 +37,29 @@ public class AutorController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvarAutor(@RequestBody Autor autor){
+    public ResponseEntity<Void> salvarAutor(@RequestBody Autor autor) {
         service.salvarAutor(autor);
-        return ResponseEntity.ok().build();
+        return ResponseEntity
+                .created(URI.create("/autores/" + autor.getId()))
+                .build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarAutorPorId(@PathVariable UUID id) {
+        service.deleteAutorPorId(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping
-    public ResponseEntity<Void> deletarAutorPorId(@RequestParam UUID id){
-        service.deleteAutorPorId(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<Void> deletarAutor(@RequestBody Autor autor) {
+        service.deleteAutor(autor);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizarAutor(@PathVariable UUID id, @RequestBody Autor autor) {
+        service.deleteAutor(autor);
+        return ResponseEntity.noContent().build();
     }
 
 }

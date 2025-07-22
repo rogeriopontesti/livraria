@@ -40,12 +40,34 @@ public class AutorService {
         return autores;
     }
 
-    public void deleteAutor(Autor autor){
-        repository.delete(autor);
+    public void deleteAutor(Autor autor) {
+        if (autor.getId() == null) {
+            throw new AutorNotFoundException("ID do autor não informado.");
+        }
+
+        Autor autorAtual = repository.findById(autor.getId())
+                .orElseThrow(() -> new AutorNotFoundException(autor.getId()));
+
+        if (autorAtual.getLivros() != null) {
+            autorAtual.getLivros().forEach(livro -> livro.getAutores().remove(autorAtual));
+            autorAtual.setLivros(null);
+        }
+
+        repository.save(autorAtual);
+        repository.delete(autorAtual);
     }
 
     public void deleteAutorPorId(UUID id){
-        repository.deleteById(id);
+        Autor autor = repository.findById(id)
+                .orElseThrow(() -> new AutorNotFoundException(id));
+
+        if (autor.getLivros() != null) {
+            autor.getLivros().forEach(livro -> livro.getAutores().remove(autor));
+            autor.setLivros(null);
+        }
+
+        repository.save(autor);
+        repository.delete(autor);
     }
 
     public void atualizaAutorPorId(UUID id, Autor autor) {
