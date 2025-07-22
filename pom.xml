@@ -12,7 +12,7 @@
 	<artifactId>livraria</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>livraria</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Exemplo de objeto relacional para um esquema de livraria utilizando Spring Data JPA</description>
 	<url/>
 	<licenses>
 		<license/>
