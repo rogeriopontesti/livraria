@@ -119,7 +119,7 @@ INSERT INTO resenhas (id, resenha, livro_id)  VALUES ('1e234567-aaaa-bbbb-cccc-1
 
 - http://localhost:8080/autores/nome/machado
 
-###### POST: Salvar autor
+##### POST: Salvar autor
 
 - http://localhost:8080/autores
 
@@ -129,11 +129,11 @@ INSERT INTO resenhas (id, resenha, livro_id)  VALUES ('1e234567-aaaa-bbbb-cccc-1
 }
 ```
 
-###### DELETE: Deletar autor pelo ID
+##### DELETE: Deletar autor pelo ID
 
 - http://localhost:8080/autores/d1a3df01-bb2f-4d70-9d9b-a111fa663f02
 
-###### DELETE: Deletar autor pela entidade
+##### DELETE: Deletar autor pela entidade
 
 - http://localhost:8080/autores
 
@@ -144,7 +144,7 @@ INSERT INTO resenhas (id, resenha, livro_id)  VALUES ('1e234567-aaaa-bbbb-cccc-1
 }
 ```
 
-###### PUT: Atualizar autor
+##### PUT: Atualizar autor
 
 - http://localhost:8080/autores/5a3a7ce3-9798-4e8b-a8e0-375d1302dad4
 
