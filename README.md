@@ -55,7 +55,7 @@ A **API Livraria** é um sistema desenvolvido com **Spring Boot** e **Spring Dat
 
 ### 📌 Diagrama de Classes
 
-[![Diagrama de Classes da API Livraria](https://i.postimg.cc/mkgm6LzZ/diagrama-de-classes-livraria.png)](https://i.postimg.cc/mkgm6LzZ/diagrama-de-classes-livraria.png)
+[![Diagrama de Classes da API Livraria](https://i.postimg.cc/W4PPJFzJ/diagrama-de-classes-livraria.png)](https://i.postimg.cc/W4PPJFzJ/diagrama-de-classes-livraria.png)
 
 ### 🔄 Exemplo de Relacionamento One-to-Many / Many-to-One
 
