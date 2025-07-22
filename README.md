@@ -22,3 +22,12 @@
     - Postman
 
 ### Objetivos da Aula
+
+- Desenvolver uma API RESTful utilizando Spring Boot com foco em boas práticas de desenvolvimento.
+- Modelar e implementar entidades do domínio de uma livraria: Livro, Autor, Editora e Resenha.
+- Aplicar o uso do Spring Data JPA para persistência de dados com repositórios.
+- Praticar o mapeamento de relacionamentos entre entidades (ex: muitos-para-um, um-para-muitos).
+- Realizar operações básicas de CRUD (Create, Read, Update, Delete) para as entidades da aplicação.
+- Explorar o uso do banco de dados em memória H2 para facilitar os testes e desenvolvimento local.
+- Testar endpoints utilizando ferramentas como Postman ou Insomnia.
+- Refletir sobre os princípios da arquitetura MVC e separação de responsabilidades na construção de APIs.
