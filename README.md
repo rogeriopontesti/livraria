@@ -70,3 +70,72 @@ A **API Livraria** é um sistema desenvolvido com **Spring Boot** e **Spring Dat
 [![Exemplo de One-to-One Editora ↔ Livros](https://i.postimg.cc/kX9SC1f8/um-para-um.png)](https://i.postimg.cc/kX9SC1f8/um-para-um.png)
 
 A API é ideal para fins educacionais, pois permite aplicar conceitos práticos de modelagem de dados, relacionamento entre entidades com **JPA**, e criação de endpoints RESTful com **Spring MVC**, além do uso de banco em memória (**H2**) para facilitar testes e desenvolvimento local.
+
+### ⚙️ Configurações do Banco de Dados (application.properties)
+
+```properties
+# Dados de conexão com o banco H2
+spring.datasource.url=jdbc:h2:mem:livraria
+spring.datasource.username=sa
+spring.datasource.password=
+
+# H2 Console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# Mostrar SQL formatado no console
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+
+### 🗃️ Script SQL para Popular o Banco
+
+```sql
+-- AUTORES
+INSERT INTO autor (id, nome) VALUES ('d1a3df01-bb2f-4d70-9d9b-a111fa663f02', 'Machado de Assis');
+INSERT INTO autor (id, nome) VALUES ('5b1d72a9-43a4-4e4c-9e17-3e9f17e489e9', 'Clarice Lispector');
+
+-- EDITORAS
+INSERT INTO editora (id, nome) VALUES ('e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf', 'Companhia das Letras');
+INSERT INTO editora (id, nome) VALUES ('f2c24d5b-70b8-4bc7-9a0b-730e8d539f91', 'Editora Globo');
+
+-- LIVROS
+INSERT INTO livro (id, titulo, editora_id) VALUES ('aaa111bb-222c-333d-444e-555fff666ggg', 'Dom Casmurro', 'e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf');
+INSERT INTO livro_autores (livro_id, autor_id) VALUES ('aaa111bb-222c-333d-444e-555fff666ggg', 'd1a3df01-bb2f-4d70-9d9b-a111fa663f02');
+
+-- RESENHAS
+INSERT INTO resenha (id, nome, livro_id) VALUES ('123resen-aaa1-234b-ccdd-5678eeeeffff', 'Uma obra-prima da literatura brasileira.', 'aaa111bb-222c-333d-444e-555fff666ggg');
+
+```
+
+### 🧪 Exemplos de Testes na API
+#### 🔍 Listar todos os livros
+
+- ![GET /livros](GET http://localhost:8080/livros)
+
+#### Resposta esperada:
+
+```json
+
+[
+  {
+    "id": "aaa111bb-222c-333d-444e-555fff666ggg",
+    "titulo": "Dom Casmurro",
+    "autores": [
+      {
+        "id": "d1a3df01-bb2f-4d70-9d9b-a111fa663f02",
+        "nome": "Machado de Assis"
+      }
+    ],
+    "editora": {
+      "id": "e4a3ad31-bf6f-42a5-a66e-4e2b8453a2cf",
+      "nome": "Companhia das Letras"
+    },
+    "resenha": {
+      "id": "123resen-aaa1-234b-ccdd-5678eeeeffff",
+      "nome": "Uma obra-prima da literatura brasileira."
+    }
+  }
+]
+
+
+```
