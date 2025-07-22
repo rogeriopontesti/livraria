@@ -34,10 +34,10 @@ public class ResenhaService {
                 .orElseThrow(() -> new ResenhaNotFoundException(id));
     }
 
-    public List<Resenha> buscarResenhasPorNome(String nome) {
-        List<Resenha> resenha = repository.findByNomeContainingIgnoreCase(nome);
+    public List<Resenha> buscarResenhasPorTexto(String texto) {
+        List<Resenha> resenha = repository.findByNomeContainingIgnoreCase(texto);
         if (resenha.isEmpty()) {
-            throw new ResenhaNotFoundException(nome);
+            throw new ResenhaNotFoundException(texto);
         }
         return resenha;
     }

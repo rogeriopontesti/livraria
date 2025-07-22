@@ -1,7 +1,6 @@
 package com.rogeriopontesti.api.livraria.controllers;
 
 import com.rogeriopontesti.api.livraria.business.services.EditoraService;
-import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
