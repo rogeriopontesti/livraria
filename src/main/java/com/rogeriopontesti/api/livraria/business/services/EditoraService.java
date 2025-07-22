@@ -5,8 +5,6 @@ import com.rogeriopontesti.api.livraria.business.exceptions.EditoraNotFoundExcep
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Livro;
-import com.rogeriopontesti.api.livraria.infrastructure.entities.Resenha;
-import com.rogeriopontesti.api.livraria.infrastructure.repositories.AutorRepository;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.EditoraRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -62,7 +60,7 @@ public class EditoraService {
             for (Livro livro : livros) {
                 if (livro.getAutores() != null) {
                     for (Autor autor : livro.getAutores()) {
-                        autor.getLivros().remove(livro); // bidirecional
+                        autor.getLivros().remove(livro);
                     }
                     livro.getAutores().clear();
                 }
