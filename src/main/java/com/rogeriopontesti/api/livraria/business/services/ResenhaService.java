@@ -2,13 +2,13 @@ package com.rogeriopontesti.api.livraria.business.services;
 
 import com.rogeriopontesti.api.livraria.business.exceptions.AutorNotFoundException;
 import com.rogeriopontesti.api.livraria.business.exceptions.ResenhaNotFoundException;
-import com.rogeriopontesti.api.livraria.business.records.ResenhaRequest;
-import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
+import com.rogeriopontesti.api.livraria.business.records.requests.ResenhaRecordRequest;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Livro;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Resenha;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.LivroRepository;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.ResenhaRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +18,10 @@ import java.util.UUID;
 @Transactional
 public class ResenhaService {
 
+    @Autowired
     private final ResenhaRepository repository;
+
+    @Autowired
     private final LivroRepository livroRepository;
 
     public ResenhaService(ResenhaRepository repository, LivroRepository livroRepository) {
@@ -26,7 +29,7 @@ public class ResenhaService {
         this.livroRepository = livroRepository;
     }
 
-    public void salvarResenha(ResenhaRequest request) {
+    public void salvarResenha(ResenhaRecordRequest request) {
 
         Livro livro = livroRepository.findById(request.livroId())
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
@@ -40,7 +43,7 @@ public class ResenhaService {
         livroRepository.save(livro);
     }
 
-    public List<Resenha> listarResenhas(){
+    public List<Resenha> listarResenhas() {
         return repository.findAll();
     }
 
@@ -65,7 +68,7 @@ public class ResenhaService {
         deleteResenhaPorId(resenha.getId());
     }
 
-    public void deleteResenhaPorId(UUID id){
+    public void deleteResenhaPorId(UUID id) {
         Resenha resenha = repository.findById(id)
                 .orElseThrow(() -> new ResenhaNotFoundException(id));
 

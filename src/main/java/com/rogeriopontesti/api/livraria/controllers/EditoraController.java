@@ -3,6 +3,7 @@ package com.rogeriopontesti.api.livraria.controllers;
 import com.rogeriopontesti.api.livraria.business.services.EditoraService;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class EditoraController {
 
+    @Autowired
     private final EditoraService service;
 
     @GetMapping

@@ -1,10 +1,10 @@
 package com.rogeriopontesti.api.livraria.controllers;
 
-import com.rogeriopontesti.api.livraria.business.records.ResenhaRequest;
+import com.rogeriopontesti.api.livraria.business.records.requests.ResenhaRecordRequest;
 import com.rogeriopontesti.api.livraria.business.services.ResenhaService;
-import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Resenha;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ResenhaController {
 
+    @Autowired
     private final ResenhaService service;
 
     @GetMapping
@@ -39,7 +40,7 @@ public class ResenhaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvarResenha(@RequestBody ResenhaRequest request) {
+    public ResponseEntity<Void> salvarResenha(@RequestBody ResenhaRecordRequest request) {
         service.salvarResenha(request);
         return ResponseEntity
                 .created(URI.create("/resenhas"))

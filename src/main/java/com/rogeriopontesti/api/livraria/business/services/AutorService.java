@@ -3,9 +3,8 @@ package com.rogeriopontesti.api.livraria.business.services;
 import com.rogeriopontesti.api.livraria.business.exceptions.AutorNotFoundException;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.AutorRepository;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.UUID;
 @Transactional
 public class AutorService {
 
+    @Autowired
     private final AutorRepository repository;
 
     public AutorService(AutorRepository repository) {

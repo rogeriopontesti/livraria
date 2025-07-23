@@ -28,6 +28,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleGenericException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Erro interno inesperado: " + ex.getMessage());
+                .body("* Nenhum registo encontrado: " + ex.getMessage());
     }
 }

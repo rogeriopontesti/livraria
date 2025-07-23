@@ -7,6 +7,7 @@ import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Livro;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.EditoraRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Transactional
 public class EditoraService {
 
+    @Autowired
     private final EditoraRepository repository;
 
     public EditoraService(EditoraRepository repository) {

@@ -3,6 +3,7 @@ package com.rogeriopontesti.api.livraria.controllers;
 import com.rogeriopontesti.api.livraria.business.services.AutorService;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AutorController {
 
+    @Autowired
     private final AutorService service;
 
     @GetMapping

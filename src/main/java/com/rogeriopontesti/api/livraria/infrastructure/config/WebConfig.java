@@ -1,4 +1,4 @@
-package com.rogeriopontesti.api.livraria.config;
+package com.rogeriopontesti.api.livraria.infrastructure.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;

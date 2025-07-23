@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public class AutorNotFoundException extends RuntimeException{
     public AutorNotFoundException(UUID id) {
-        super("Autor não encontrado: " + id);
+        super(id.toString());
     }
 
-    public AutorNotFoundException(String nome) {
-        super("Autor não encontrado: " + nome);
+    public AutorNotFoundException(String argumento) {
+        super(argumento);
     }
 }

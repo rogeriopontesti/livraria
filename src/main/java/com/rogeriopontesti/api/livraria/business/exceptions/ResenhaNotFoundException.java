@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public class ResenhaNotFoundException extends RuntimeException {
   public ResenhaNotFoundException(UUID id) {
-    super("Resenha não encontrada: " + id);
+    super(id.toString());
   }
 
-  public ResenhaNotFoundException(String nome) {
-    super("Resenha não encontrada: " + nome);
+  public ResenhaNotFoundException(String argumento) {
+    super(argumento);
   }
 }

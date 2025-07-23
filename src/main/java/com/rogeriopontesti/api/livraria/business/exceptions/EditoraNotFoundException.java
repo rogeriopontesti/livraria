@@ -5,10 +5,10 @@ import java.util.UUID;
 public class EditoraNotFoundException extends RuntimeException {
 
     public EditoraNotFoundException(UUID id) {
-        super("Editora não encontrada: " + id);
+        super(id.toString());
     }
 
-    public EditoraNotFoundException(String nome) {
-        super("Editora não encontrada: " + nome);
+    public EditoraNotFoundException(String argumento) {
+        super(argumento);
     }
 }
