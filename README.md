@@ -203,3 +203,53 @@ INSERT INTO resenhas (id, resenha, livro_id)  VALUES ('1e234567-aaaa-bbbb-cccc-1
     	"nome" : "Editora Nova Abril Cultural"
 }
 ```
+
+### CRUD - Resenas
+
+##### GET: Lista resenhas
+
+- http://localhost:8080/resenhas
+
+##### GET: Encontra resenha pelo ID
+
+- http://localhost:8080/resenhas/1e234567-aaaa-bbbb-cccc-12345678eeee
+
+##### GET: Encontrar resenha pelo trecho
+
+- http://localhost:8080/resenhas/trecho/obra-prima
+
+##### POST: Salvar resenha
+
+- http://localhost:8080/resenhas
+
+```json
+{
+  	"resenha": "Livro muito bom!",
+  	"livroId": "aaa111bb-222c-433d-844e-555fff666121"
+}
+```
+
+##### DELETE: Deletar resenha pelo ID
+
+http://localhost:8080/resenhas/1e234567-aaaa-bbbb-cccc-12345678eeee
+
+##### DELETE: Deletar resenha pela entidade
+
+- http://localhost:8080/resenhas
+
+```json
+{
+	"id": "1e234567-aaaa-bbbb-cccc-12345678eeee"
+}
+```
+
+##### PUT: Atualizar resenha
+
+- http://localhost:8080/resenhas/1e234567-aaaa-bbbb-cccc-12345678eeee
+
+```json
+{
+	"id": "1e234567-aaaa-bbbb-cccc-12345678eeee",
+	"resenha" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+}
+```

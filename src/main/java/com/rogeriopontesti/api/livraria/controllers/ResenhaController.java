@@ -1,5 +1,6 @@
 package com.rogeriopontesti.api.livraria.controllers;
 
+import com.rogeriopontesti.api.livraria.business.records.ResenhaRequest;
 import com.rogeriopontesti.api.livraria.business.services.ResenhaService;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Resenha;
@@ -23,9 +24,9 @@ public class ResenhaController {
         return ResponseEntity.ok(service.listarResenhas());
     }
 
-    @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<Resenha>> listarResenhasPorTexto(@PathVariable String texto){
-        List<Resenha> resenhas = service.buscarResenhasPorTexto(texto);
+    @GetMapping("/trecho/{trecho}")
+    public ResponseEntity<List<Resenha>> listarResenhasPorTrecho(@PathVariable String trecho){
+        List<Resenha> resenhas = service.buscarResenhasPorTrecho(trecho);
         if (resenhas.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -38,10 +39,10 @@ public class ResenhaController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> buscarResenha(@RequestBody Resenha resenha) {
-        service.salvarResenha(resenha);
+    public ResponseEntity<Void> salvarResenha(@RequestBody ResenhaRequest request) {
+        service.salvarResenha(request);
         return ResponseEntity
-                .created(URI.create("/editoras/" + resenha.getId()))
+                .created(URI.create("/resenhas"))
                 .build();
     }
 
