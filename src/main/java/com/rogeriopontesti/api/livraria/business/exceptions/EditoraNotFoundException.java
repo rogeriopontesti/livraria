@@ -1,14 +1,14 @@
 package com.rogeriopontesti.api.livraria.business.exceptions;
 
+import java.io.Serial;
 import java.util.UUID;
 
 public class EditoraNotFoundException extends RuntimeException {
 
-    public EditoraNotFoundException(UUID id) {
-        super(id.toString());
-    }
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    public EditoraNotFoundException(String argumento) {
-        super(argumento);
+    public EditoraNotFoundException(String message) {
+        super(message);
     }
 }

@@ -1,8 +1,10 @@
 package com.rogeriopontesti.api.livraria.business.services;
 
 import com.rogeriopontesti.api.livraria.business.exceptions.AutorNotFoundException;
+import com.rogeriopontesti.api.livraria.business.exceptions.LivroNotFoundException;
 import com.rogeriopontesti.api.livraria.business.exceptions.ResenhaNotFoundException;
 import com.rogeriopontesti.api.livraria.business.records.requests.ResenhaRecordRequest;
+import com.rogeriopontesti.api.livraria.infrastructure.config.Labels;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Livro;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Resenha;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.LivroRepository;
@@ -29,10 +31,33 @@ public class ResenhaService {
         this.livroRepository = livroRepository;
     }
 
+    public List<Resenha> listarResenhas() {
+        return repository.findAll();
+    }
+
+    public Resenha buscarResenhaPorId(UUID id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResenhaNotFoundException(
+                        Labels.getErroNotFoundResenha(id.toString())
+                ));
+    }
+
+    public List<Resenha> buscarResenhasPorTrecho(String texto) {
+        List<Resenha> resenha = repository.buscarPorTrecho(texto);
+        if (resenha.isEmpty()) {
+            throw new ResenhaNotFoundException(
+                    Labels.getErroNotFoundResenha(texto)
+            );
+        }
+        return resenha;
+    }
+
     public void salvarResenha(ResenhaRecordRequest request) {
 
         Livro livro = livroRepository.findById(request.livroId())
-                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+                .orElseThrow(() -> new LivroNotFoundException(
+                        Labels.getErroNotFoundLivro(request.livroId().toString())
+                ));
 
         Resenha novaResenha = Resenha.builder()
                 .resenha(request.resenha())
@@ -43,26 +68,11 @@ public class ResenhaService {
         livroRepository.save(livro);
     }
 
-    public List<Resenha> listarResenhas() {
-        return repository.findAll();
-    }
-
-    public Resenha buscarResenhaPorId(UUID id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new ResenhaNotFoundException(id));
-    }
-
-    public List<Resenha> buscarResenhasPorTrecho(String texto) {
-        List<Resenha> resenha = repository.buscarPorTrecho(texto);
-        if (resenha.isEmpty()) {
-            throw new ResenhaNotFoundException(texto);
-        }
-        return resenha;
-    }
-
     public void deleteResenha(Resenha resenha) {
         if (resenha.getId() == null) {
-            throw new AutorNotFoundException("ID do autor não informado.");
+            throw new ResenhaNotFoundException(
+                    Labels.getErroNullOrNonExistentId()
+            );
         }
 
         deleteResenhaPorId(resenha.getId());
@@ -70,7 +80,9 @@ public class ResenhaService {
 
     public void deleteResenhaPorId(UUID id) {
         Resenha resenha = repository.findById(id)
-                .orElseThrow(() -> new ResenhaNotFoundException(id));
+                .orElseThrow(() -> new ResenhaNotFoundException(
+                        Labels.getErroNotFoundResenha(id.toString())
+                ));
 
         Livro livro = resenha.getLivro();
         if (livro != null) {
@@ -83,7 +95,9 @@ public class ResenhaService {
 
     public void atualizaResenhaPorId(UUID id, Resenha resenha) {
         Resenha resenhaEntity = repository.findById(id)
-                .orElseThrow(() -> new ResenhaNotFoundException(id));
+                .orElseThrow(() -> new ResenhaNotFoundException(
+                        Labels.getErroNotFoundResenha(id.toString())
+                ));
 
         if (resenha.getResenha() != null) {
             resenhaEntity.setResenha(resenha.getResenha());

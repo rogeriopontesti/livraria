@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface AutorRepository extends JpaRepository<Autor, UUID> {
-
     List<Autor> findByNomeContaining(String nome);
-
     List<Autor> findByNomeContainingIgnoreCase(String nome);
 }

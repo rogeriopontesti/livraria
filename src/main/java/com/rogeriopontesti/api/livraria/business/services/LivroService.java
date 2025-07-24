@@ -3,6 +3,7 @@ package com.rogeriopontesti.api.livraria.business.services;
 import com.rogeriopontesti.api.livraria.business.exceptions.AutorNotFoundException;
 import com.rogeriopontesti.api.livraria.business.exceptions.LivroNotFoundException;
 import com.rogeriopontesti.api.livraria.business.records.responses.LivroRecordResponse;
+import com.rogeriopontesti.api.livraria.infrastructure.config.Labels;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Livro;
 import com.rogeriopontesti.api.livraria.infrastructure.repositories.LivroRepository;
@@ -40,7 +41,9 @@ public class LivroService {
 
     public LivroRecordResponse buscarLivroPorId(UUID id) {
         Livro livro = repository.findById(id)
-                .orElseThrow(() -> new LivroNotFoundException(id));
+                .orElseThrow(() -> new LivroNotFoundException(
+                        Labels.getErroNotFoundLivro(id.toString())
+                ));
 
         return new LivroRecordResponse(
                 livro.getId(),
@@ -56,7 +59,9 @@ public class LivroService {
     public List<LivroRecordResponse> buscarLivrosPorTitulo(String titulo) {
         List<Livro> livros = repository.findByTituloContainingIgnoreCase(titulo);
         if (livros.isEmpty()) {
-            throw new LivroNotFoundException(titulo);
+            throw new LivroNotFoundException(
+                    Labels.getErroNotFoundLivro(titulo)
+            );
         }
         return livros.stream()
                 .map(livro -> new LivroRecordResponse(
@@ -73,7 +78,9 @@ public class LivroService {
     public List<LivroRecordResponse> buscarLivrosPorNomeDaEditora(String nomeEditora) {
         List<Livro> livros = repository.findByEditora_NomeContainingIgnoreCase(nomeEditora);
         if (livros.isEmpty()) {
-            throw new LivroNotFoundException(nomeEditora);
+            throw new LivroNotFoundException(
+                    Labels.getErroNotFoundLivro(nomeEditora)
+            );
         }
         return livros.stream()
                 .map(livro -> new LivroRecordResponse(

@@ -2,6 +2,7 @@ package com.rogeriopontesti.api.livraria.business.services;
 
 import com.rogeriopontesti.api.livraria.business.exceptions.AutorNotFoundException;
 import com.rogeriopontesti.api.livraria.business.exceptions.EditoraNotFoundException;
+import com.rogeriopontesti.api.livraria.infrastructure.config.Labels;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Autor;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Editora;
 import com.rogeriopontesti.api.livraria.infrastructure.entities.Livro;
@@ -34,27 +35,35 @@ public class EditoraService {
 
     public Editora buscarEditoraPorId(UUID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new EditoraNotFoundException(id));
+                .orElseThrow(() -> new EditoraNotFoundException(
+                        Labels.getErroNotFoundEditora(id.toString())
+                ));
     }
 
     public List<Editora> buscarEditorasPorNome(String nome) {
         List<Editora> editoras = repository.findByNomeContainingIgnoreCase(nome);
         if (editoras.isEmpty()) {
-            throw new AutorNotFoundException(nome);
+            throw new EditoraNotFoundException(
+                    Labels.getErroNotFoundEditora(nome)
+            );
         }
         return editoras;
     }
 
     public void deleteEditora(Editora editora) {
         if (editora.getId() == null) {
-            throw new EditoraNotFoundException("ID da editora não informado.");
+            throw new EditoraNotFoundException(
+                    Labels.getErroNullOrNonExistentId()
+            );
         }
         deleteEditoraPorId(editora.getId());
     }
 
     public void deleteEditoraPorId(UUID id) {
         Editora editora = repository.findById(id)
-                .orElseThrow(() -> new EditoraNotFoundException(id));
+                .orElseThrow(() -> new EditoraNotFoundException(
+                        Labels.getErroNotFoundEditora(id.toString())
+                ));
 
         List<Livro> livros = editora.getLivros();
 
@@ -82,7 +91,9 @@ public class EditoraService {
 
     public void atualizaEditoraEditoraPorId(UUID id, Editora editora) {
         Editora editoraEntity = repository.findById(id)
-                .orElseThrow(() -> new AutorNotFoundException(id));
+                .orElseThrow(() -> new AutorNotFoundException(
+                        Labels.getErroNotFoundAutor(id.toString())
+                ));
 
         if (editora.getNome() != null) {
             editoraEntity.setNome(editora.getNome());

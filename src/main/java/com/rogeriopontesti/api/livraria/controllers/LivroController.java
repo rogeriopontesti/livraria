@@ -1,8 +1,5 @@
 package com.rogeriopontesti.api.livraria.controllers;
 
-import com.rogeriopontesti.api.livraria.business.records.requests.LivroFindByEditora_NomeRecordRequest;
-import com.rogeriopontesti.api.livraria.business.records.requests.LivroFindByIdRecordRequest;
-import com.rogeriopontesti.api.livraria.business.records.requests.LivroFindByTituloRecordRequest;
 import com.rogeriopontesti.api.livraria.business.records.responses.LivroRecordResponse;
 import com.rogeriopontesti.api.livraria.business.services.LivroService;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +32,7 @@ public class LivroController {
 
     @GetMapping("/{id}")
     public ResponseEntity<LivroRecordResponse> buscarLivro(@PathVariable UUID id) {
-        LivroFindByIdRecordRequest request = new LivroFindByIdRecordRequest(id);
-        LivroRecordResponse livro = service.buscarLivroPorId(request.id());
+        LivroRecordResponse livro = service.buscarLivroPorId(id);
         if (livro == null) {
             return ResponseEntity.noContent().build();
         }
@@ -45,8 +41,7 @@ public class LivroController {
 
     @GetMapping("/titulo/{titulo}")
     public ResponseEntity<List<LivroRecordResponse>> listarLivrosPorNome(@PathVariable String titulo) {
-        LivroFindByTituloRecordRequest request = new LivroFindByTituloRecordRequest(titulo);
-        List<LivroRecordResponse> livros = service.buscarLivrosPorTitulo(request.titulo());
+        List<LivroRecordResponse> livros = service.buscarLivrosPorTitulo(titulo);
         if (livros.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
@@ -55,8 +50,7 @@ public class LivroController {
 
     @GetMapping("/editora/{nome}")
     public ResponseEntity<List<LivroRecordResponse>> listarLivrosPorEditora(@PathVariable String nome) {
-        LivroFindByEditora_NomeRecordRequest request = new LivroFindByEditora_NomeRecordRequest(nome);
-        List<LivroRecordResponse> livros = service.buscarLivrosPorNomeDaEditora(request.nome());
+        List<LivroRecordResponse> livros = service.buscarLivrosPorNomeDaEditora(nome);
         if (livros.isEmpty()) {
             return ResponseEntity.noContent().build();
         }

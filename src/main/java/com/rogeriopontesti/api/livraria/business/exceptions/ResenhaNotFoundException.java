@@ -1,13 +1,14 @@
 package com.rogeriopontesti.api.livraria.business.exceptions;
 
+import java.io.Serial;
 import java.util.UUID;
 
 public class ResenhaNotFoundException extends RuntimeException {
-  public ResenhaNotFoundException(UUID id) {
-    super(id.toString());
-  }
 
-  public ResenhaNotFoundException(String argumento) {
-    super(argumento);
+  @Serial
+  private static final long serialVersionUID = 1L;
+
+  public ResenhaNotFoundException(String message) {
+    super(message);
   }
 }
